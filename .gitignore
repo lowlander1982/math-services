@@ -1,0 +1,79 @@
+# Binarios
+/bin/
+
+# Archivos de objeto, compartidos, y otros
+*.o
+*.a
+*.so
+*.swo
+*.swp
+*.swx
+*.sy?
+*.db
+*.exe
+
+# Directories
+_obj
+_test
+
+# Archivos temporales
+*.tmp
+*.temp
+*.t??
+*~
+
+# Logs y databases
+*.log
+*.sql
+*.sqlite
+
+# Sistema de operación
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE y editor de archivos
+.idea/
+*.sublime*
+.vscode/
+*.iml
+
+# Go
+# Binarios para programas y plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Directorio de paquetes (http://golang.org/cmd/go/#hdr-GOPATH_environment_variable)
+pkg/
+
+# Dependencias externas
+#	 Dependencias se gestionan con `go mod`, lo que hace que GOPATH ya no sea necesario
+#	 Pero si tienes proyectos más antiguos o si no estás usando `go mod`, entonces es posible que quieras descomentar las siguientes líneas:
+# vendor/
+# GOPATH bin directory
+# bin/
+
+# Folders
+__pycache__
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependency directories (Comment these lines if you want to track these directories)
+node_modules/
+jspm_packages/
+
+# dotenv environment variable file
+.env
+
+# Mac
+.DS_Store

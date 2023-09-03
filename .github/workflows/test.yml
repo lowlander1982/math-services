@@ -1,0 +1,27 @@
+name: Unit Tests on PR
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Go 1.21
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.21
+        id: go
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test -v ./...
