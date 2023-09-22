@@ -1,6 +1,6 @@
 module math-services
 
-go 1.23.0
+go 1.23
 
 require (
 	github.com/bytedance/sonic v1.10.0 // indirect
