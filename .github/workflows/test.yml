@@ -28,6 +28,7 @@ jobs:
 
   integration-test:
     name: Run Integration Tests
+    needs: unit-test
     runs-on: ubuntu-latest
 
     steps:
