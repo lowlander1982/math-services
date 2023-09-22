@@ -21,7 +21,7 @@ Microservicios escritos en Go que permiten hacer varios calculos.
 
 ## Requisitos previos
 
-- Go 1.21
+- Go 1.23
 - Docker (opcional para despliegue con contenedores)
 
 ## Cómo ejecutar el proyecto
