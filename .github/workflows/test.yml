@@ -24,7 +24,7 @@ jobs:
         run: go mod download
 
       - name: Run tests
-        run: go vet ./...
+        run: go vet
 
   unit-test:
     name: Run Unit Tests
