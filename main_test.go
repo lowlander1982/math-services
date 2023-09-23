@@ -71,7 +71,7 @@ func TestLargeDigits(t *testing.T) {
 	assert.Contains(t, resp.Body.String(), "\"realPi\":\"3.141592653589793\"")
 }
 
-func TestCalculatePiFunction(t *testing.T) {
+func TestCalculatePiFunctionPass(t *testing.T) {
 	// Se esta calculando con un metodo muy poco preciso, por lo que se usa un delta de 0.01
 	assert.InDelta(t, math.Pi, utils.CalculatePi(15), 0.01)
 }
