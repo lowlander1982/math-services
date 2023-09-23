@@ -15,7 +15,6 @@ func GetComplexFunctions() map[string]govaluate.ExpressionFunction {
 		"abs":  abs,
 		"exp":  exp,
 		"log":  log,
-		"test": test,
 	}
 
 }
