@@ -158,3 +158,14 @@ func TestMathParserSimple(t *testing.T) {
 	assert.Equal(t, 12.0, result)
 	assert.Equal(t, nil, err)
 }
+func TestMathParserTan(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "tan(pi/3)",
+		Variables:    map[string]float64{},
+		Constants:    []string{"pi"},
+		Complex:      true,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, math.Tan(math.Pi/3), result)
+	assert.Equal(t, nil, err)
+}
