@@ -2,7 +2,10 @@ package main
 
 import (
 	"math"
+	"math-services/controllers/complex_expresions"
+	"math-services/controllers/simple_expresions"
 	"math-services/handlers"
+	"math-services/models"
 	"math-services/utils"
 	"net/http"
 	"net/http/httptest"
@@ -71,4 +74,87 @@ func TestLargeDigits(t *testing.T) {
 func TestCalculatePiFunction(t *testing.T) {
 	// Se esta calculando con un metodo muy poco preciso, por lo que se usa un delta de 0.01
 	assert.InDelta(t, math.Pi, utils.CalculatePi(15), 0.01)
+}
+
+func TestMathParserComplexFails(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "sin(pi)",
+		Variables:    map[string]float64{},
+		Constants:    []string{"pi"},
+		Complex:      false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, result, 0)
+	assert.Error(t, err)
+}
+func TestMathParserComplex(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "sin(pi)",
+		Variables:    map[string]float64{},
+		Constants:    []string{"pi"},
+		Complex:      true,
+	}
+	result, err := simple_expresions.MathParser(formula, complex_expresions.GetComplexFunctions())
+	assert.Equal(t, math.Sin(math.Pi), result)
+	assert.Equal(t, nil, err)
+}
+func TestMathParserConstantsFails(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "3*pi",
+		Variables:    map[string]float64{},
+		Constants:    []string{},
+		Complex:      false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, 0, result)
+	assert.Error(t, err)
+}
+func TestMathParserConstants(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "3*pi",
+		Variables:    map[string]float64{},
+		Constants:    []string{"pi"},
+		Complex:      false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, 3*math.Pi, result)
+	assert.Equal(t, nil, err)
+}
+func TestMathParserVariablesFails(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "a*b",
+		Variables: map[string]float64{
+			"a": 4,
+		},
+		Constants: []string{},
+		Complex:   false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, 0, result)
+	assert.Error(t, err)
+}
+func TestMathParserVariables(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "a*b",
+		Variables: map[string]float64{
+			"a": 4,
+			"b": 3,
+		},
+		Constants: []string{},
+		Complex:   false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, 12.0, result)
+	assert.Equal(t, nil, err)
+}
+func TestMathParserSimple(t *testing.T) {
+	formula := models.MathFormula{
+		MathFunction: "4*3",
+		Variables:    map[string]float64{},
+		Constants:    []string{},
+		Complex:      false,
+	}
+	result, err := simple_expresions.MathParser(formula, nil)
+	assert.Equal(t, 12.0, result)
+	assert.Equal(t, nil, err)
 }
