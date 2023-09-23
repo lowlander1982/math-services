@@ -8,13 +8,14 @@ import (
 
 func GetComplexFunctions() map[string]govaluate.ExpressionFunction {
 	return map[string]govaluate.ExpressionFunction{
-		"sin": sin,
-		"cos": cos,
-		"tan": tan,
+		"sin":  sin,
+		"cos":  cos,
+		"tan":  tan,
 		"sqrt": sqrt,
-		"abs": abs,
-		"exp": exp,
-		"log": log,
+		"abs":  abs,
+		"exp":  exp,
+		"log":  log,
+		"test": test,
 	}
 
 }
@@ -41,4 +42,3 @@ func log(args ...interface{}) (interface{}, error) {
 func tan(args ...interface{}) (interface{}, error) {
 	return math.Tan(args[0].(float64)), nil
 }
-
